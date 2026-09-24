@@ -5,7 +5,7 @@
   "server": {
     "url": "https://ai.sidajaya.shop",
     "cleartext": false,
-    "allowNavigation": ["ai.sidajaya.shop"]
+    "allowNavigation": ["ai.sidajaya.shop", "labs.sidajaya.shop"]
   },
   "android": {
     "allowMixedContent": false,
