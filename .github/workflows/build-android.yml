@@ -8,6 +8,7 @@ on:
       - 'capacitor.config.json'
       - 'www/**'
       - 'scripts/**'
+      - 'assets/**'
       - '.github/workflows/build-android.yml'
   workflow_dispatch:
 
@@ -46,6 +47,9 @@ jobs:
         run: |
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
+
+      - name: Generate ikon + splash dari logo
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#ffffff' --splashBackgroundColor '#ffffff' --splashBackgroundColorDark '#111111'
 
       - name: Suntik izin native (kamera/file/notif)
         run: node scripts/patch-manifest.js
