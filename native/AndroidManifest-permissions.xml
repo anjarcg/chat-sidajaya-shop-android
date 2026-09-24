@@ -1,0 +1,8 @@
+<!-- Tempel blok <uses-permission> ini ke android/app/src/main/AndroidManifest.xml
+     setelah `npx cap add android` (jangan timpa file asli — buka lalu sisipkan manual).
+     FileProvider untuk input-file WebView sudah otomatis dari Capacitor. -->
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-feature android:name="android.hardware.camera" android:required="false" />

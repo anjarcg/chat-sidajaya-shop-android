@@ -1,0 +1,58 @@
+name: Build APK Sidajaya AI
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'package.json'
+      - 'capacitor.config.json'
+      - 'www/**'
+      - 'scripts/**'
+      - '.github/workflows/build-android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install deps
+        run: npm install
+
+      - name: Tambah platform Android + sync
+        run: |
+          if [ ! -d android ]; then npx cap add android; fi
+          npx cap sync android
+
+      - name: Suntik izin native (kamera/file/notif)
+        run: node scripts/patch-manifest.js
+
+      - name: Build APK debug
+        run: |
+          chmod +x android/gradlew
+          ./android/gradlew -p android assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: sidajaya-ai-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk

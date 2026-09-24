@@ -1,0 +1,24 @@
+{
+  "appId": "com.sidajaya.chatv4",
+  "appName": "Sidajaya AI",
+  "webDir": "www",
+  "server": {
+    "url": "https://ai.sidajaya.shop",
+    "cleartext": false,
+    "allowNavigation": ["ai.sidajaya.shop"]
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  },
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon",
+      "iconColor": "#6d28d9"
+    }
+  }
+}

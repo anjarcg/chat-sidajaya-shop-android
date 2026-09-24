@@ -1,0 +1,30 @@
+<!-- Tempel cuplikan ini tepat sebelum </body> di web/chat.php (server), BUKAN di file lokal.
+     File android-bridge.js harus bisa diakses publik, mis. https://ai.sidajaya.shop/android-bridge.js
+     Cara termudah: upload android-app/www/android-bridge.js ke folder public situs ai.sidajaya.shop (.audit/backup dulu!). -->
+<script src="/android-bridge.js"></script>
+<script>
+// Native: tombol "Buka Kamera" pakai plugin Capacitor bila tersedia, fallback ke input file.
+(function () {
+  var tombol = document.querySelector("button[onclick*='cameraInput']");
+  function dataURLtoFile(u, n) {
+    var a = u.split(','), m = a[0].match(/:(.*?);/), b = atob(a[1]), L = b.length, d = new Uint8Array(L);
+    while (L--) d[L] = b.charCodeAt(L);
+    return new File([d], n, { type: (m && m[1]) || 'image/jpeg' });
+  }
+  document.addEventListener('click', async function (ev) {
+    var N = window.SidajayaNative;
+    if (!N || !N.info.isNative) return; // browser: biarkan perilaku bawaan
+    var t = ev.target;
+    if (!t || !t.textContent || t.textContent.indexOf('Buka Kamera') < 0) return;
+    ev.preventDefault(); ev.stopPropagation();
+    try {
+      var url = await N.ambilFotoKamera();
+      var f = dataURLtoFile(url, 'kamera-' + Date.now() + '.jpg');
+      if (window.selectedFiles && window.selectedFiles.push) { window.selectedFiles.push(f); }
+      if (window.renderFiles) window.renderFiles();
+    } catch (e) { alert('Kamera batal/gagal: ' + (e && e.message || e)); }
+  }, true);
+  // Daftarkan token push (butuh endpoint save_push_token di server — lihat README):
+  if (window.SidajayaNative) window.SidajayaNative.hubungkanTokenPush('/push_token');
+})();
+</script>
