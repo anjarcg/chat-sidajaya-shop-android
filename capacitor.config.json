@@ -3,9 +3,13 @@
   "appName": "Sidajaya AI",
   "webDir": "www",
   "server": {
-    "url": "https://ai.sidajaya.shop",
+    "url": "https://chat.sidajaya.shop",
     "cleartext": false,
-    "allowNavigation": ["ai.sidajaya.shop", "labs.sidajaya.shop"]
+    "allowNavigation": [
+      "chat.sidajaya.shop",
+      "ai.sidajaya.shop",
+      "labs.sidajaya.shop"
+    ]
   },
   "android": {
     "allowMixedContent": false,
@@ -14,7 +18,11 @@
   },
   "plugins": {
     "PushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert"]
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     },
     "LocalNotifications": {
       "smallIcon": "ic_stat_icon",
