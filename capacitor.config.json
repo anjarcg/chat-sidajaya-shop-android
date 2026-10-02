@@ -1,6 +1,6 @@
 {
-  "appId": "com.sidajaya.chatv4",
-  "appName": "Sidajaya AI",
+  "appId": "com.sidajaya.chatshop",
+  "appName": "Chat Sidajaya",
   "webDir": "www",
   "server": {
     "url": "https://chat.sidajaya.shop",

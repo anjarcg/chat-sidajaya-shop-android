@@ -1,8 +1,8 @@
 {
-  "name": "sidajaya-chat-android",
+  "name": "chat-sidajaya-shop-android",
   "version": "1.0.0",
   "private": true,
-  "description": "Wrapper Capacitor Chat v4 Sidajaya AI (kamera, file, notif)",
+  "description": "Capacitor wrapper chat.sidajaya.shop (Open WebUI + Argus)",
   "scripts": {
     "sync": "npx cap sync",
     "add-android": "npx cap add android",
